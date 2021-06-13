@@ -6,36 +6,38 @@ import PySimpleGUI as sg
 
 class SimuladorDados:
     def __init__(self):
-        self.valor_minimo = 1
-        self.valor_maximo = 6
+        self.min_value = 1
+        self.max_value = 6
+        
         # Criar layout
         self.layout = [
-            [sg.Text('Jogar o dado?')],
-            [sg.Button('SIM'), sg.Button('NAO')],
-            [sg.Button('Encerrar')]
+            [sg.Text("Deseja jogar o dado?")],
+            [sg.Button("SIM"), sg.Button("NAO")],
+            [sg.Button("ENCERRAR")]
         ]
 
     def Iniciar(self):
         # Criar uma janela
-        self.janela = sg.Window('Simulador de dado', layout=self.layout)
+        self.window = sg.Window("Simulador de dado",layout=self.layout)
         # Ler os valores da tela
-        self.eventos, self.valores = self.janela.Read()
+        self.events, self.values = self.window.Read()
         # Fazer alguma coisa com esses valores
+        
         try:
-            if self.eventos == 'SIM' or self.eventos == 's':
+            if self.events == 's' or self.events == 'SIM':
                 self.GerarValorDado()
-            elif self.eventos == 'NAO' or self.eventos == 'n':
-                print('Agradecemos sua participação.\n')
-            elif self.eventos == 'Encerrar':
-                print('Encerrando o Jogo')
+            elif self.events == 'n' or self.events == 'NAO':
+                print('Agradecemos por sua participação!')
+            elif self.events == 'ENCERRAR':
+                print('print("Encerrando o programa.")')
             else:
-                print('Favor digitar SIM ou NAO')
+                print('Favor digitar sim/nao ou encerrar')
         except:
             print('Ocorreu um erro ao receber sua resposta')
+        
 
     def GerarValorDado(self):
-        print(random.randint(self.valor_minimo, self.valor_maximo))
-
+        print(random.randint(self.min_value, self.max_value))
 
 simulador = SimuladorDados()
 simulador.Iniciar()
