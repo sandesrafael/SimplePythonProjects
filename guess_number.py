@@ -21,7 +21,7 @@ class GuessANumber:
         #Create a layout for the graphical interface
         layout = [
             [sg.Text('Enter your guess: ',size=(39,0))],
-            [sg.Input(size=(18,0),key='GuessValue')],
+            [sg.Input(size=(18,0),key='ChosenValue')],
             [sg.Button('Guess')],
             [sg.Output(size=(39,10))],
             [sg.Button('Close')]
@@ -37,7 +37,7 @@ class GuessANumber:
                 
                 # Do something with these values
                 if self.events == 'Guess':
-                    self.answer = self.values['GuessValue']
+                    self.answer = self.values['ChosenValue']
                     while self.try_again == True:
                         if int(self.answer) > self.random_value:
                             print('You missed! Enter a lower value!')
@@ -65,4 +65,4 @@ class GuessANumber:
         self.random_value =  random.randint(self.min_value, self.max_value)
 
 guess = GuessANumber()
-guess.Start()
+guess.Start() 
